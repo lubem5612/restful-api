@@ -21,7 +21,8 @@ return [
             'order' => [
                 'column' => 'created_at',
                 'pattern' => 'DESC',
-            ]
+            ],
+            'relationships' => []
         ],
     ],
 

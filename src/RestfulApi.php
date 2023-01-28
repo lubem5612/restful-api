@@ -110,7 +110,13 @@ class RestfulApi
             if (!array_key_exists('model', $this->routes[$endpoint])) {
                 return $this->returnResponse(null, ['message' => 'model not specified'], 500);
             }
-            $resource = $this->routes[$endpoint]['model']::find($id);
+            $builder = $this->routes[$endpoint]['model']::query();
+            if (array_key_exists('relationships', $this->routes[$endpoint])) {
+                if (count($this->routes[$endpoint]['relationships']) > 0) {
+                    $builder = $builder->with($this->routes[$endpoint]['relationships']);
+                }
+            }
+            $resource = $builder->find($id);
             if (empty($resource)) {
                 return $this->returnResponse(null, ['message' => 'resource not fount'], 400);
             }
