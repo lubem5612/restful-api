@@ -37,11 +37,11 @@ class RestfulApi
                 $builder = $this->routes[$endpoint]['model']::orderBy('created_at', 'desc');
             }
 
-            $query_count = $request->query();
+            $query = $request->query();
 
-            if(isset($query_count) && count($query_count) > 0) {
-                $query = $request->query();
+            if(isset($query) && count($query) > 0) {
                 unset($query['page']);
+                unset($query['limit']);
                 $builder->where($query);
             }
 
