@@ -37,5 +37,6 @@
                 "RestfulApi": "Slait\\RestfulApi\\Facades\\RestfulApi"
             }
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
