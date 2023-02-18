@@ -6,13 +6,13 @@
         {
             "name": "Lubem Tser",
             "email": "enginlubem@ymail.com",
-            "homepage": "http://slait.com.ng"
+            "homepage": "https://slait.com.ng"
         }
     ],
     "homepage": "https://github.com/slait/restfulapi",
     "keywords": ["Laravel", "RestfulApi"],
     "require": {
-        "illuminate/support": "~9"
+        "illuminate/contracts": "^8.15 || 9.0 - 9.34 || ^9.36 || ^10.0",
     },
     "require-dev": {
         "phpunit/phpunit": "~9.0",
