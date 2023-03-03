@@ -20,7 +20,7 @@ Route::group(['prefix' => 'api', 'middleware' => $controlledMiddlewares], functi
         Route::get('{endpoint}', [RestfulController::class, 'index']);
         Route::post('{endpoint}', [RestfulController::class, 'store']);
         Route::get('{endpoint}/{id}', [RestfulController::class, 'show']);
-        Route::match(['put', 'patch'],'{endpoint}/{id}', [RestfulController::class, 'update']);
+        Route::match(['post', 'put', 'patch'],'{endpoint}/{id}', [RestfulController::class, 'update']);
         Route::delete('{endpoint}/{id}', [RestfulController::class, 'destroy']);
     });
 });
