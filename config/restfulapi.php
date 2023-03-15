@@ -42,7 +42,7 @@ return [
      |
      */
     'middlewares' => [
-//        'admin',
+
     ]
 
 ];
