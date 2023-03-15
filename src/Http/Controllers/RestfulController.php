@@ -16,6 +16,7 @@ class RestfulController extends Controller
     public function __construct()
     {
         $this->api = new RestfulApi();
+
     }
 
     public function index(Request $request, $endpoint)

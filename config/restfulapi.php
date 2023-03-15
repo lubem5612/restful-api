@@ -22,7 +22,7 @@ return [
                 'column' => 'created_at',
                 'pattern' => 'DESC',
             ],
-            'relationships' => []
+            'relationships' => [],
         ],
     ],
 
@@ -42,8 +42,7 @@ return [
      |
      */
     'middlewares' => [
-        'admin',
-        'auth:sanctum',
+//        'admin',
     ]
 
 ];
