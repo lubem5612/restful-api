@@ -27,12 +27,17 @@ if (count($middlewares) > 0) {
     }
 }
 
-Route::group(['prefix' => 'api'], function() use($prefix, $customMiddleware, $authMiddleware){
-    Route::group(['prefix' => $prefix], function () use($customMiddleware, $authMiddleware) {
-        Route::get('{endpoint}', [RestfulController::class, 'index'])->middleware($customMiddleware);
-        Route::post('{endpoint}', [RestfulController::class, 'store'])->middleware($authMiddleware);
-        Route::get('{endpoint}/{id}', [RestfulController::class, 'show'])->middleware($customMiddleware);
-        Route::match(['post', 'put', 'patch'],'{endpoint}/{id}', [RestfulController::class, 'update'])->middleware($authMiddleware);
-        Route::delete('{endpoint}/{id}', [RestfulController::class, 'destroy'])->middleware($authMiddleware);
+Route::group(['prefix' => 'api', 'middleware' => [$customMiddleware]], function() use($prefix){
+    Route::group(['prefix' => $prefix], function () {
+        Route::get('{endpoint}', [RestfulController::class, 'index']);
+        Route::get('{endpoint}/{id}', [RestfulController::class, 'show']);
+    });
+});
+
+Route::group(['prefix' => 'api', 'middleware' => [$authMiddleware]], function() use($prefix){
+    Route::group(['prefix' => $prefix], function () {
+        Route::post('{endpoint}', [RestfulController::class, 'store']);
+        Route::match(['post', 'put', 'patch'],'{endpoint}/{id}', [RestfulController::class, 'update']);
+        Route::delete('{endpoint}/{id}', [RestfulController::class, 'destroy']);
     });
 });
