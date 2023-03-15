@@ -27,14 +27,14 @@ if (count($middlewares) > 0) {
     }
 }
 
-Route::group(['prefix' => 'api', 'middleware' => [$customMiddleware]], function() use($prefix){
+Route::group(['prefix' => 'api', 'middleware' => $customMiddleware], function() use($prefix){
     Route::group(['prefix' => $prefix], function () {
         Route::get('{endpoint}', [RestfulController::class, 'index']);
         Route::get('{endpoint}/{id}', [RestfulController::class, 'show']);
     });
 });
 
-Route::group(['prefix' => 'api', 'middleware' => [$authMiddleware]], function() use($prefix){
+Route::group(['prefix' => 'api', 'middleware' => $authMiddleware], function() use($prefix){
     Route::group(['prefix' => $prefix], function () {
         Route::post('{endpoint}', [RestfulController::class, 'store']);
         Route::match(['post', 'put', 'patch'],'{endpoint}/{id}', [RestfulController::class, 'update']);
